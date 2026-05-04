@@ -1,1261 +1,1231 @@
-/* =========================
-   GOOGLE FONTS
-========================= */
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;700&display=swap');
+/* =============================================================
+   SCENTIA — GLOBAL STYLESHEET
+   All page styles live here. JSPs must NOT contain <style> tags.
+   ============================================================= */
 
-/* =========================
-   ROOT
-========================= */
-:root{
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap');
 
-  --bg:#f7f4ef;
-  --card:rgba(255,255,255,0.72);
+/* =============================================================
+   CSS VARIABLES
+   ============================================================= */
+:root {
+  --bg:          #f7f4ef;
+  --card:        rgba(255,255,255,0.78);
+  --text:        #1b1815;
+  --muted:       #8c857d;
+  --gold:        #b8964e;
+  --gold-dark:   #8d6b35;
+  --navy:        #1a1a2e;
+  --border:      rgba(0,0,0,0.08);
+  --shadow:      0 8px 28px rgba(0,0,0,0.08);
+  --shadow-lg:   0 20px 60px rgba(0,0,0,0.16);
+  --radius:      24px;
+  --radius-sm:   12px;
 
-  --text:#1b1815;
-  --muted:#8c857d;
-
-  --gold:#b8964e;
-  --gold-dark:#8d6b35;
-
-  --border:rgba(0,0,0,0.08);
-
-  --shadow:0 10px 30px rgba(0,0,0,0.08);
-  --shadow-lg:0 20px 60px rgba(0,0,0,0.16);
-
-  --radius:24px;
+  /* Vibe palette */
+  --vibe-soft-bg:    #fde8f0;
+  --vibe-soft-text:  #a0446e;
+  --vibe-soft-bdr:   #f5b8d4;
+  --vibe-bold-bg:    #e8f0fd;
+  --vibe-bold-text:  #2b4a9e;
+  --vibe-bold-bdr:   #a8bef5;
+  --vibe-sweet-bg:   #fef3e2;
+  --vibe-sweet-text: #a07020;
+  --vibe-sweet-bdr:  #f0d090;
+  --vibe-fresh-bg:   #e2f5ef;
+  --vibe-fresh-text: #1e7a55;
+  --vibe-fresh-bdr:  #90d8b8;
 }
 
-/* =========================
+/* =============================================================
    RESET
-========================= */
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
-
-html{
-  scroll-behavior:smooth;
-}
-
-body{
-  font-family:'DM Sans', sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  overflow-x:hidden;
-}
-
-a{
-  text-decoration:none;
-  color:inherit;
-}
-
-img{
-  width:100%;
-  display:block;
-}
-
-/* =========================
-   NAVBAR
-========================= */
-.navbar{
-  position:fixed;
-  top:0;
-  left:0;
-
-  width:100%;
-  height:75px;
-
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-
-  padding:0 45px;
-
-  background:rgba(255,255,255,0.7);
-  backdrop-filter:blur(16px);
-
-  border-bottom:1px solid var(--border);
-
-  z-index:1000;
-}
-
-.logo,
-.brand{
-  font-family:'Cormorant Garamond', serif;
-  font-size:2rem;
-  letter-spacing:0.14em;
-}
-
-.logo span{
-  color:var(--gold);
-}
-
-.nav-links,
-nav{
-  display:flex;
-  align-items:center;
-  gap:24px;
-}
-
-.nav-link,
-nav a{
-  font-size:0.8rem;
-  text-transform:uppercase;
-  letter-spacing:0.12em;
-
-  color:var(--muted);
-
-  position:relative;
-  transition:0.3s;
-}
-
-.nav-link:hover,
-nav a:hover{
-  color:var(--text);
-}
-
-.nav-link::after,
-nav a::after{
-  content:"";
-
-  position:absolute;
-  bottom:-4px;
-  left:0;
-
-  width:0%;
-  height:1px;
-
-  background:var(--gold);
-
-  transition:0.3s;
-}
-
-.nav-link:hover::after,
-nav a:hover::after{
-  width:100%;
-}
-
-/* =========================
-   MAIN
-========================= */
-.main-container,
-.page-shell{
-  width:min(1200px,92%);
-  margin:auto;
-
-  padding-top:120px;
-  padding-bottom:70px;
-}
-
-/* =========================
-   GLASS CARD
-========================= */
-.glass-card{
-  background:var(--card);
-
-  border:1px solid rgba(255,255,255,0.5);
-
-  backdrop-filter:blur(16px);
-
-  border-radius:var(--radius);
-
-  box-shadow:var(--shadow);
-}
-
-/* =========================
-   BUTTONS
-========================= */
-.btn-primary{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-
-  padding:13px 24px;
-
-  border:none;
-  border-radius:999px;
-
-  background:linear-gradient(
-    135deg,
-    var(--gold),
-    var(--gold-dark)
-  );
-
-  color:white;
-
-  cursor:pointer;
-
-  transition:0.35s ease;
-}
-
-.btn-primary:hover{
-  transform:translateY(-3px);
-  box-shadow:0 12px 24px rgba(184,150,78,0.28);
-}
-
-.btn-secondary{
-  padding:11px 20px;
-
-  border-radius:999px;
-
-  border:1px solid var(--border);
-
-  background:white;
-}
-
-/* =========================
-   FORM
-========================= */
-.form-card{
-  max-width:430px;
-
-  margin:70px auto;
-
-  padding:42px;
-
-  text-align:center;
-}
-
-.form-title{
-  font-family:'Cormorant Garamond', serif;
-  font-size:3rem;
-
-  margin-bottom:8px;
-}
-
-.form-subtitle{
-  color:var(--muted);
-
-  margin-bottom:30px;
-}
-
-.form-group{
-  margin-bottom:16px;
-}
-
-.form-input{
-  width:100%;
-
-  padding:15px;
-
-  border-radius:14px;
-
-  border:1px solid var(--border);
-
-  background:white;
-}
-
-.form-input:focus{
-  outline:none;
-
-  border-color:var(--gold);
-
-  box-shadow:0 0 0 4px rgba(184,150,78,0.15);
-}
-
-.error-box{
-  background:#ffe6e6;
-
-  color:#cc3a3a;
-
-  padding:12px;
-
-  border-radius:12px;
-
-  margin-bottom:16px;
-}
-
-/* =========================
-   PAGE HEADINGS
-========================= */
-.page-heading{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-
-  margin-bottom:35px;
-}
-
-.page-kicker,
-.welcome-eyebrow{
-  color:var(--gold);
-
-  text-transform:uppercase;
-
-  letter-spacing:0.16em;
-
-  font-size:0.74rem;
-
-  margin-bottom:12px;
-}
-
-.page-title,
-.welcome-title{
-  font-family:'Cormorant Garamond', serif;
-
-  font-size:4rem;
-
-  line-height:1;
-}
-
-.page-copy,
-.welcome-subtitle{
-  color:var(--muted);
-
-  line-height:1.8;
-
-  margin-top:14px;
-}
-
-/* =========================
-   DASHBOARD
-========================= */
-.dashboard-layout{
-  display:grid;
-  grid-template-columns:2fr 1fr;
-  gap:30px;
-
-  margin-top:35px;
-}
-
-/* =========================
-   VIBE GRID
-========================= */
-.vibe-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:22px;
-}
-
-.vibe-card{
-  position:relative;
-
-  overflow:hidden;
-
-  border-radius:26px;
-
-  height:250px;
-
-  background-size:cover;
-  background-position:center;
-
-  cursor:pointer;
-
-  transition:0.4s ease;
-}
-
-.vibe-card:hover{
-  transform:translateY(-5px) scale(1.02);
-  box-shadow:var(--shadow-lg);
-}
-
-.overlay{
-  position:absolute;
-  bottom:0;
-
-  width:100%;
-
-  padding:24px;
-
-  color:white;
-
-  background:linear-gradient(
-    transparent,
-    rgba(0,0,0,0.7)
-  );
-}
-
-.overlay h3{
-  font-family:'Cormorant Garamond', serif;
-  font-size:2rem;
-}
-
-.vibe-badge{
-  position:absolute;
-  top:18px;
-  left:18px;
-
-  padding:8px 14px;
-
-  border-radius:999px;
-
-  background:rgba(255,255,255,0.18);
-
-  color:white;
-
-  backdrop-filter:blur(8px);
-}
-
-/* =========================
-   SIDEBAR
-========================= */
-.sidebar-card{
-  padding:25px;
-}
-
-.section-label{
-  font-size:0.75rem;
-
-  text-transform:uppercase;
-
-  letter-spacing:0.16em;
-
-  color:var(--muted);
-
-  margin-bottom:18px;
-}
-
-.recommendation-item{
-  display:flex;
-  gap:14px;
-  align-items:center;
-}
-
-.perfume-img{
-  width:72px;
-  height:72px;
-
-  object-fit:cover;
-
-  border-radius:16px;
-}
-
-.rec-info h4{
-  margin-bottom:4px;
-}
-
-.rec-info p{
-  color:var(--muted);
-  font-size:0.84rem;
-}
-
-.match-pill{
-  display:inline-block;
-
-  margin-top:8px;
-
-  padding:6px 12px;
-
-  border-radius:999px;
-
-  background:rgba(184,150,78,0.14);
-
-  color:var(--gold);
-
-  font-size:0.74rem;
-}
-
-.rec-divider{
-  height:1px;
-
-  background:rgba(0,0,0,0.06);
-
-  margin:18px 0;
-}
-
-/* =========================
-   ABOUT
-========================= */
-.about-hero{
-  display:grid;
-  grid-template-columns:1.2fr 0.8fr;
-  gap:30px;
-
-  margin-bottom:35px;
-}
-
-.hero-copy{
-  padding:40px;
-}
-
-.hero-art{
-  min-height:420px;
-
-  position:relative;
-
-  background:
-    linear-gradient(
-      135deg,
-      #f1e4cf,
-      #d7c0a0
-    );
-}
-
-.bottle-mark{
-  position:absolute;
-
-  width:180px;
-  height:280px;
-
-  border-radius:90px 90px 40px 40px;
-
-  background:rgba(255,255,255,0.35);
-
-  left:50%;
-  top:50%;
-
-  transform:translate(-50%,-50%);
-}
-
-.feature-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:25px;
-}
-
-.feature-card{
-  padding:30px;
-}
-
-.feature-card h2{
-  margin-bottom:14px;
-
-  font-family:'Cormorant Garamond', serif;
-}
-
-.feature-card p{
-  color:var(--muted);
-  line-height:1.7;
-}
-
-/* =========================
-   ADMIN
-========================= */
-.admin-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:22px;
-
-  margin-top:35px;
-}
-
-.admin-card{
-  display:flex;
-  align-items:center;
-  gap:20px;
-
-  padding:28px;
-
-  border-radius:24px;
-
-  background:white;
-
-  cursor:pointer;
-
-  box-shadow:var(--shadow);
-
-  transition:0.35s ease;
-}
-
-.admin-card:hover{
-  transform:translateY(-6px);
-  box-shadow:var(--shadow-lg);
-}
-
-.admin-icon-box{
-  width:70px;
-  height:70px;
-
-  border-radius:20px;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  font-size:1.6rem;
-}
-
-.bg-soft-pink{
-  background:#ffe7ef;
-}
-
-.bg-soft-mint{
-  background:#e5f7f0;
-}
-
-.bg-soft-cream{
-  background:#fff3da;
-}
-
-.bg-soft-gray{
-  background:#ededed;
-}
-
-/* =========================
-   TABLE
-========================= */
-.full-width{
-  padding:30px;
-
-  margin-top:35px;
-}
-
-.section-title{
-  font-family:'Cormorant Garamond', serif;
-  font-size:2rem;
-
-  margin-bottom:20px;
-}
-
-table{
-  width:100%;
-  border-collapse:collapse;
-}
-
-th,
-td{
-  padding:16px;
-  text-align:left;
-}
-
-th{
-  color:var(--muted);
-  font-size:0.82rem;
-  text-transform:uppercase;
-}
-
-tr{
-  border-top:1px solid rgba(0,0,0,0.06);
-}
-
-.status-badge{
-  padding:6px 12px;
-
-  border-radius:999px;
-
-  font-size:0.75rem;
-}
-
-.status-match{
-  background:#efe4ff;
-  color:#7b49d3;
-}
-
-.status-update{
-  background:#e8f5ff;
-  color:#1e7acb;
-}
-
-.status-register{
-  background:#e8fff2;
-  color:#1d9c5d;
-}
-
-/* =========================
-   CART
-========================= */
-.cart-list{
-  display:flex;
-  flex-direction:column;
-  gap:18px;
-}
-
-.cart-item{
-  display:grid;
-  grid-template-columns:2fr 1fr 1fr 1fr auto;
-
-  align-items:center;
-
-  gap:20px;
-
-  padding:25px;
-}
-
-.item-name{
-  font-size:1.1rem;
-}
-
-.item-note{
-  color:var(--muted);
-
-  margin-top:5px;
-}
-
-.item-price,
-.item-subtotal{
-  font-weight:500;
-}
-
-.qty-controls{
-  display:flex;
-  align-items:center;
-  gap:12px;
-}
-
-.qty-btn{
-  width:34px;
-  height:34px;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  border-radius:10px;
-
-  background:black;
-
-  color:white;
-}
-
-.remove-link{
-  color:#c45d5d;
-}
-
-.cart-summary{
-  margin-top:30px;
-
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-
-  padding:28px;
-}
-
-.summary-label{
-  color:var(--muted);
-}
-
-.summary-total{
-  font-size:2rem;
-
-  font-family:'Cormorant Garamond', serif;
-}
-
-/* =========================
-   EMPTY
-========================= */
-.empty-state{
-  text-align:center;
-
-  padding:60px 20px;
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-@media(max-width:900px){
-
-  .dashboard-layout,
-  .about-hero,
-  .feature-grid{
-    grid-template-columns:1fr;
-  }
-
-  .admin-grid{
-    grid-template-columns:1fr;
-  }
-
-  .cart-item{
-    grid-template-columns:1fr;
-  }
-}
-
-@media(max-width:650px){
-
-  .navbar{
-    padding:0 20px;
-  }
-
-  .page-title,
-  .welcome-title{
-    font-size:2.7rem;
-  }
-
-  .vibe-grid{
-    grid-template-columns:1fr;
-  }
-
-  .page-heading{
-    flex-direction:column;
-    align-items:flex-start;
-    gap:20px;
-  }
-
-  nav,
-  .nav-links{
-    gap:14px;
-  }
-}
-/* =========================
-   PERFUME PAGE
-========================= */
-/* =========================
-   PERFUME GRID FIX
-========================= */
-
-.perfume-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit, minmax(260px,1fr));
-  gap:28px;
-}
-
-/* =========================
-   PERFUME CARD
-========================= */
-
-.perfume-card{
-  padding:18px;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-  gap:16px;
-
-  transition:0.35s ease;
-}
-
-.perfume-card:hover{
-  transform:translateY(-6px);
-  box-shadow:var(--shadow-lg);
-}
-
-/* =========================
-   IMAGE
-========================= */
-
-.perfume-image{
-  width:100%;
-  height:220px;
-  object-fit:cover;
-  border-radius:14px;
-}
-
-/* =========================
-   META
-========================= */
-
-.perfume-meta{
-  padding:6px 4px;
-}
-
-.perfume-name{
-  font-size:1.4rem;
-}
-
-.perfume-brand{
-  font-size:0.85rem;
-}
-
-/* =========================
-   ACTION BUTTONS
-========================= */
-
-.card-actions{
-  display:flex;
-  justify-content:space-between;
-  gap:10px;
-  margin-top:10px;
-}
-
-.card-actions a{
-  flex:1;
-  text-align:center;
-  font-size:0.8rem;
-}
-
-/* =========================
-   SEARCH PANEL POLISH
-========================= */
-
-.search-panel{
-  align-items:center;
-  border-radius:20px;
-}
-
-.search-panel button{
-  white-space:nowrap;
-}
-
-/* =========================
-   EMPTY STATE POLISH
-========================= */
-
-.empty-state h2{
-  font-family:'Cormorant Garamond', serif;
-  margin-bottom:10px;
-}
-
-.empty-state p{
-  color:var(--muted);
-}
-.page-hero{
-  margin-bottom:35px;
-}
-
-.search-panel{
-  display:flex;
-  gap:16px;
-
-  padding:20px;
-
-  margin-bottom:35px;
-}
-
-.search-input{
-  flex:1;
-
-  padding:14px 18px;
-
-  border-radius:14px;
-
-  border:1px solid rgba(0,0,0,0.08);
-
-  background:white;
-}
-
-.search-input:focus{
-  outline:none;
-
-  border-color:var(--gold);
-
-  box-shadow:0 0 0 4px rgba(184,150,78,0.12);
-}
-
-.perfume-meta{
-  margin-top:18px;
-}
-
-.perfume-name{
-  font-family:'Cormorant Garamond', serif;
-
-  font-size:1.8rem;
-
-  margin-bottom:6px;
-}
-
-.perfume-brand{
-  color:var(--muted);
-
-  margin-bottom:14px;
-}
-
-.score-pill{
-  display:inline-block;
-
-  padding:8px 14px;
-
-  border-radius:999px;
-
-  background:rgba(184,150,78,0.12);
-
-  color:var(--gold);
-
-  font-size:0.8rem;
-}
-
- /* =========================
-   ADMIN TABLE LUXURY UPGRADE
-========================= */
-
-.admin-table {
+   ============================================================= */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+a { text-decoration: none; color: inherit; }
+img { width: 100%; display: block; }
+button { font-family: inherit; cursor: pointer; }
+
+/* =============================================================
+   NAVBAR — USER (role=user)
+   ============================================================= */
+.navbar {
+  position: fixed;
+  top: 0; left: 0;
   width: 100%;
-  border-collapse: separate;
-  border-spacing: 0 14px;
+  height: 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+  background: rgba(255,255,255,0.78);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--border);
+  z-index: 1000;
 }
-
-.admin-table th {
+.logo, .brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.9rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--navy);
+}
+.logo span { color: var(--gold); }
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.nav-link {
+  font-size: 0.78rem;
   text-transform: uppercase;
-  font-size: 0.75rem;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   color: var(--muted);
-  padding: 14px;
-  text-align: left;
+  padding: 0.4rem 0.75rem;
+  border-radius: 8px;
+  transition: color 0.25s, background 0.25s;
 }
-
-.admin-table td {
-  background: white;
-  padding: 18px;
-  border-top: 1px solid rgba(0,0,0,0.04);
-  border-bottom: 1px solid rgba(0,0,0,0.04);
+.nav-link:hover { color: var(--text); background: rgba(0,0,0,0.04); }
+.nav-link.btn-logout {
+  background: var(--navy);
+  color: #fff;
+  border-radius: 20px;
+  padding: 0.4rem 1.1rem;
 }
+.nav-link.btn-logout:hover { background: var(--gold); }
 
-.admin-table tr td:first-child {
-  border-left: 1px solid rgba(0,0,0,0.04);
-  border-radius: 18px 0 0 18px;
+/* =============================================================
+   NAVBAR — ADMIN
+   ============================================================= */
+.admin-navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2.5rem;
+  height: 64px;
+  background: rgba(255,255,255,0.88);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
-
-.admin-table tr td:last-child {
-  border-right: 1px solid rgba(0,0,0,0.04);
-  border-radius: 0 18px 18px 0;
+.admin-navbar .logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--navy);
 }
-
-.admin-table tr:hover td {
-  box-shadow: var(--shadow);
-  transform: scale(1.01);
-  transition: 0.25s ease;
+.admin-navbar .logo span { color: var(--gold); }
+.admin-nav-links { display: flex; gap: 4px; align-items: center; }
+.admin-nav-links a {
+  text-decoration: none;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 500;
+  padding: 0.4rem 0.85rem;
+  border-radius: 8px;
+  transition: color 0.2s, background 0.2s;
 }
-
-/* =========================
-   BUTTONS (ADMIN ACTIONS)
-========================= */
-
-.btn-edit {
-  padding: 8px 14px;
-  border-radius: 999px;
-  background: rgba(184,150,78,0.12);
-  color: var(--gold);
-  font-size: 0.75rem;
-  border: 1px solid rgba(184,150,78,0.3);
-  transition: 0.3s ease;
+.admin-nav-links a:hover { background: #f5f0ea; color: var(--navy); }
+.admin-nav-links a.active { color: var(--navy); font-weight: 600; }
+.admin-nav-links .btn-logout {
+  background: var(--navy);
+  color: #fff !important;
+  padding: 0.4rem 1.1rem;
+  border-radius: 20px;
 }
+.admin-nav-links .btn-logout:hover { background: var(--gold); }
 
-.btn-edit:hover {
-  background: var(--gold);
-  color: white;
-}
-
-.btn-delete {
-  padding: 8px 14px;
-  border-radius: 999px;
-  background: rgba(255,0,0,0.08);
-  color: #c45d5d;
-  font-size: 0.75rem;
-  border: 1px solid rgba(255,0,0,0.2);
-  transition: 0.3s ease;
-}
-
-.btn-delete:hover {
-  background: #c45d5d;
-  color: white;
-}
-
-/* =========================
-   ADMIN CONTAINER
-========================= */
-
-.admin-container {
+/* =============================================================
+   PAGE SHELLS
+   ============================================================= */
+.main-container,
+.page-shell {
   width: min(1200px, 92%);
   margin: auto;
-  padding-top: 120px;
+  padding-top: 110px;
+  padding-bottom: 70px;
 }
 
-/* =========================
-   TOAST MESSAGE
-========================= */
-
-.toast {
-  position: fixed;
-  top: 90px;
-  right: 30px;
-
-  background: white;
-  padding: 14px 20px;
-
-  border-radius: 14px;
+/* =============================================================
+   GLASS CARD
+   ============================================================= */
+.glass-card {
+  background: var(--card);
+  border: 1px solid rgba(255,255,255,0.55);
+  backdrop-filter: blur(16px);
+  border-radius: var(--radius);
   box-shadow: var(--shadow);
-
-  border-left: 4px solid var(--gold);
-
-  animation: fadeIn 0.4s ease;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
- /* =========================
-   DELETE PAGE STYLES
-========================= */
-
-.delete-card {
-  max-width: 420px;
-  margin: 120px auto;
-  padding: 40px;
-  text-align: center;
-}
-
-.delete-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 2.6rem;
-  margin-bottom: 12px;
-  color: var(--text);
-}
-
-.delete-text {
-  color: var(--muted);
-  line-height: 1.7;
-  margin-bottom: 28px;
-}
-
-/* Actions container */
-.delete-actions {
-  display: flex;
+/* =============================================================
+   BUTTONS
+   ============================================================= */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
   justify-content: center;
-  gap: 14px;
-}
-
-/* Danger button */
-.btn-danger {
-  padding: 12px 22px;
+  padding: 12px 24px;
+  border: none;
   border-radius: 999px;
-
-  background: #c45d5d;
-  color: white;
-
-  font-size: 0.85rem;
-  letter-spacing: 0.08em;
-
-  transition: 0.3s ease;
-
-  display: inline-block;
+  background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+  color: #fff;
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
-.btn-danger:hover {
-  background: #a94444;
+.btn-primary:hover {
   transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(184,150,78,0.30);
 }
-
-/* Secondary button override for consistency */
 .btn-secondary {
-  padding: 12px 22px;
-  border-radius: 999px;
-
-  border: 1px solid var(--border);
-  background: white;
-
-  font-size: 0.85rem;
-
-  transition: 0.3s ease;
-
-  display: inline-block;
-}
-
-.btn-secondary:hover {
-  background: rgba(0,0,0,0.04);
-  transform: translateY(-2px);
-}
-/* =========================
-   EDIT PERFUME PAGE
-========================= */
-
-.form-card {
-  max-width: 500px;
-  margin: 120px auto;
-  padding: 40px;
-  text-align: center;
-}
-
-.form-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 2.2rem;
-  margin-bottom: 25px;
-}
-
-.form-input {
-  width: 100%;
-  padding: 14px;
-  margin-bottom: 15px;
-  border-radius: 12px;
-  border: 1px solid var(--border);
-  background: rgba(255,255,255,0.9);
-  font-size: 0.9rem;
-}
-
-.form-input:focus {
-  outline: none;
-  border-color: var(--gold);
-  box-shadow: 0 0 0 4px rgba(184,150,78,0.15);
-}
-
-/* Back button spacing */
-.form-card .btn-secondary {
-  margin-top: 10px;
-  display: inline-block;
-}
-
-
-/* =========================
-   DELETE CONFIRMATION PAGE
-========================= */
-
-.delete-card {
-  max-width: 480px;
-  margin: 140px auto;
-  padding: 40px;
-  text-align: center;
-}
-
-.delete-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 2rem;
-  margin-bottom: 15px;
-  color: #b02a2a;
-}
-
-.delete-text {
-  color: var(--muted);
-  font-size: 0.9rem;
-  margin-bottom: 25px;
-  line-height: 1.5;
-}
-
-.delete-actions {
-  display: flex;
+  display: inline-flex;
+  align-items: center;
   justify-content: center;
-  gap: 15px;
+  padding: 11px 20px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: #fff;
+  color: var(--text);
+  font-size: 0.85rem;
+  transition: background 0.2s, transform 0.2s;
 }
-
-
-/* =========================
-   DANGER BUTTON
-========================= */
+.btn-secondary:hover { background: rgba(0,0,0,0.04); transform: translateY(-2px); }
 
 .btn-danger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   padding: 12px 22px;
   border-radius: 999px;
   background: linear-gradient(135deg, #e74c3c, #c0392b);
-  color: white;
-  text-decoration: none;
-  font-size: 0.8rem;
-  letter-spacing: 0.05em;
-  transition: 0.3s;
+  color: #fff;
+  font-size: 0.85rem;
+  border: none;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
-
 .btn-danger:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(231,76,60,0.3);
+  box-shadow: 0 10px 24px rgba(231,76,60,0.3);
 }
 
+/* =============================================================
+   TOAST / ALERTS
+   ============================================================= */
+.toast-msg {
+  background: #d4f4dd;
+  border: 1px solid #a8e6b8;
+  color: #2d6a4f;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius-sm);
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+.toast-err {
+  background: #fde8e8;
+  border: 1px solid #f5a8a8;
+  color: #922;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius-sm);
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+.error-msg { /* inline form error */
+  background: #fde8e8;
+  border: 1px solid #f5a8a8;
+  color: #922;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  font-size: 0.88rem;
+}
 
-/* =========================
-   SECONDARY BUTTON POLISH
-========================= */
+/* =============================================================
+   VIBE PILLS (shared)
+   ============================================================= */
+.vibe-pill {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+.vibe-Soft  { background: var(--vibe-soft-bg);  color: var(--vibe-soft-text); }
+.vibe-Bold  { background: var(--vibe-bold-bg);  color: var(--vibe-bold-text); }
+.vibe-Sweet { background: var(--vibe-sweet-bg); color: var(--vibe-sweet-text); }
+.vibe-Fresh { background: var(--vibe-fresh-bg); color: var(--vibe-fresh-text); }
 
-.btn-secondary {
-  padding: 12px 22px;
+/* =============================================================
+   HOME PAGE
+   ============================================================= */
+.dashboard-container { /* wraps entire home content */ }
+
+.welcome-section {
+  text-align: center;
+  padding: 3rem 0 2rem;
+}
+.welcome-eyebrow {
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+.welcome-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3.8rem;
+  font-weight: 700;
+  line-height: 1.05;
+  color: var(--navy);
+}
+.welcome-subtitle {
+  color: var(--muted);
+  font-size: 1rem;
+  margin-top: 12px;
+  margin-bottom: 28px;
+}
+
+.dashboard-layout {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 28px;
+  margin-top: 32px;
+}
+
+/* Vibe Grid (home page) */
+.vibe-grid {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 20px;
+}
+.vibe-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  height: 240px;
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+.vibe-card:hover { transform: translateY(-5px) scale(1.015); box-shadow: var(--shadow-lg); }
+.vibe-card .overlay {
+  position: absolute;
+  bottom: 0; width: 100%;
+  padding: 22px;
+  color: #fff;
+  background: linear-gradient(transparent, rgba(0,0,0,0.68));
+}
+.vibe-card .overlay h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.9rem;
+  line-height: 1;
+}
+.vibe-card .overlay p { font-size: 0.82rem; opacity: 0.82; margin-top: 4px; }
+.vibe-badge {
+  position: absolute;
+  top: 16px; left: 16px;
+  padding: 6px 14px;
   border-radius: 999px;
+  background: rgba(255,255,255,0.18);
+  color: #fff;
+  font-size: 0.78rem;
+  backdrop-filter: blur(8px);
+}
+.section-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+
+/* Sidebar (home page) */
+.sidebar-card { padding: 24px; }
+.recommendation-item { display: flex; gap: 14px; align-items: center; }
+.perfume-img { width: 66px; height: 66px; object-fit: cover; border-radius: 14px; flex-shrink: 0; }
+.rec-info h4 { font-size: 0.95rem; margin-bottom: 3px; }
+.rec-info p  { color: var(--muted); font-size: 0.82rem; }
+.match-pill {
+  display: inline-block;
+  margin-top: 6px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: rgba(184,150,78,0.14);
+  color: var(--gold);
+  font-size: 0.72rem;
+}
+.rec-divider { height: 1px; background: rgba(0,0,0,0.06); margin: 16px 0; }
+
+/* =============================================================
+   PERFUME BROWSE PAGE
+   ============================================================= */
+.page-hero { margin-bottom: 30px; }
+.page-kicker {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+.page-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3.5rem;
+  line-height: 1.05;
+}
+.page-copy { color: var(--muted); line-height: 1.8; margin-top: 12px; }
+
+/* Search bar */
+.search-panel {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  padding: 18px 22px;
+  border-radius: 20px;
+  margin-bottom: 28px;
+}
+.search-input {
+  flex: 1;
+  padding: 12px 18px;
+  border-radius: 14px;
   border: 1px solid var(--border);
-  text-decoration: none;
-  color: var(--text);
-  font-size: 0.8rem;
-  background: white;
+  background: #fff;
+  font-size: 0.9rem;
+  font-family: inherit;
+}
+.search-input:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 4px rgba(184,150,78,0.12);
 }
 
-.btn-secondary:hover {
-  background: rgba(0,0,0,0.05);
+/* Vibe filter buttons (browse page) */
+.vibe-filters {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.75rem;
+  justify-content: center;
 }
-
-
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media (max-width: 600px) {
-  .form-card,
-  .delete-card {
-    margin: 100px 20px;
-    padding: 25px;
-  }
-
-  .delete-actions {
-    flex-direction: column;
-  }
+.vibe-btn {
+  padding: 0.4rem 1.1rem;
+  border-radius: 20px;
+  font-size: 0.83rem;
+  font-weight: 600;
+  border: 2px solid transparent;
+  transition: all 0.2s;
+  cursor: pointer;
 }
+.vibe-btn:hover  { transform: translateY(-1px); }
+.vibe-btn.active { filter: brightness(0.86); transform: none; }
+.vibe-btn-Soft  { background: var(--vibe-soft-bg);  color: var(--vibe-soft-text);  border-color: var(--vibe-soft-bdr); }
+.vibe-btn-Bold  { background: var(--vibe-bold-bg);  color: var(--vibe-bold-text);  border-color: var(--vibe-bold-bdr); }
+.vibe-btn-Sweet { background: var(--vibe-sweet-bg); color: var(--vibe-sweet-text); border-color: var(--vibe-sweet-bdr); }
+.vibe-btn-Fresh { background: var(--vibe-fresh-bg); color: var(--vibe-fresh-text); border-color: var(--vibe-fresh-bdr); }
+.vibe-btn-all   { background: #f5f0ea; color: #666; border-color: #ddd; }
+
+/* Perfume card grid */
+.perfume-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 26px;
+}
+.perfume-card {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 14px;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+.perfume-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
 .perfume-image {
   width: 100%;
-  height: 220px;
+  height: 210px;
   object-fit: cover;
-  display: block;
+  border-radius: 14px;
+}
+.perfume-meta { padding: 4px 2px; }
+.perfume-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.7rem;
+  margin-bottom: 5px;
+  line-height: 1.2;
+}
+.perfume-brand { color: var(--muted); font-size: 0.85rem; margin-bottom: 10px; }
+.score-pill {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(184,150,78,0.12);
+  color: var(--gold);
+  font-size: 0.78rem;
+  margin-top: 6px;
+}
+.card-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 6px;
+}
+.card-actions a { flex: 1; text-align: center; font-size: 0.8rem; }
+.empty-state {
+  grid-column: 1/-1;
+  text-align: center;
+  padding: 60px 24px;
+}
+.empty-state h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+.empty-state p { color: var(--muted); }
+
+/* =============================================================
+   ADMIN DASHBOARD (admin.jsp)
+   ============================================================= */
+.dashboard-wrapper { max-width: 1100px; margin: 0 auto; padding: 2.5rem 1.5rem; }
+
+.dash-header { margin-bottom: 2.25rem; }
+.dash-header .eyebrow {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+  margin-bottom: 6px;
+}
+.dash-header h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 4px;
+}
+.dash-header p { color: var(--muted); font-size: 0.92rem; }
+
+/* Stat cards */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+.stat-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  box-shadow: 0 2px 14px rgba(0,0,0,0.07);
+  border: 1px solid rgba(0,0,0,0.055);
+}
+.stat-icon {
+  width: 52px; height: 52px;
   border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+.stat-icon.pink  { background: #fde8f0; }
+.stat-icon.mint  { background: #e2f5ef; }
+.stat-icon.amber { background: #fef3e2; }
+.stat-num { font-size: 1.85rem; font-weight: 700; color: var(--navy); line-height: 1; }
+.stat-label { font-size: 0.78rem; color: #999; margin-top: 3px; }
+
+/* Quick-action cards */
+.action-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+.action-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 1.35rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: 0 2px 14px rgba(0,0,0,0.07);
+  border: 1px solid rgba(0,0,0,0.055);
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-decoration: none;
+  color: inherit;
+}
+.action-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.13); }
+.action-icon {
+  width: 44px; height: 44px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+.action-card h3 { font-size: 0.97rem; font-weight: 600; color: var(--navy); margin: 0 0 3px; }
+.action-card p  { font-size: 0.78rem; color: #999; margin: 0; }
+
+/* Activity table */
+.activity-section {
+  background: #fff;
+  border-radius: 14px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 14px rgba(0,0,0,0.07);
+  border: 1px solid rgba(0,0,0,0.055);
+}
+.activity-section h2 { font-size: 1.05rem; font-weight: 600; color: var(--navy); margin: 0 0 1.2rem; }
+.activity-section table { width: 100%; border-collapse: collapse; }
+.activity-section th {
+  text-align: left;
+  padding: 0.55rem 0.75rem;
+  font-size: 0.73rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #bbb;
+  border-bottom: 1px solid #f0f0f0;
+}
+.activity-section td {
+  padding: 0.72rem 0.75rem;
+  font-size: 0.87rem;
+  color: #444;
+  border-bottom: 1px solid #f8f8f8;
+}
+.activity-section tr:last-child td { border-bottom: none; }
+.badge {
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 0.73rem;
+  font-weight: 600;
+}
+.badge-match    { background: #e8f4fd; color: #2980b9; }
+.badge-update   { background: #e9f7ef; color: #27ae60; }
+.badge-register { background: #fef9e7; color: #d4a017; }
+
+/* =============================================================
+   ADMIN PERFUMES TABLE (adminPerfumes.jsp)
+   ============================================================= */
+.page-wrapper { max-width: 1200px; margin: 0 auto; padding: 2.5rem 1.5rem; }
+.page-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+.page-top h1 { font-family: 'Cormorant Garamond', serif; font-size: 1.9rem; font-weight: 700; color: var(--navy); margin: 0; }
+
+.btn-add {
+  background: var(--navy);
+  color: #fff;
+  padding: 0.5rem 1.3rem;
+  border-radius: 20px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+.btn-add:hover { background: var(--gold); }
+
+.table-card {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 2px 14px rgba(0,0,0,0.07);
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.055);
+}
+.table-card table { width: 100%; border-collapse: collapse; }
+.table-card thead { background: #f9f7f4; }
+.table-card th {
+  padding: 0.9rem 1rem;
+  text-align: left;
+  font-size: 0.73rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #bbb;
+}
+.table-card td {
+  padding: 0.85rem 1rem;
+  font-size: 0.87rem;
+  color: #444;
+  border-bottom: 1px solid #f5f5f5;
+}
+.table-card tr:last-child td { border-bottom: none; }
+.table-card tr:hover td { background: #fdfcfb; }
+.stock-low { color: #e74c3c; font-weight: 600; }
+.action-links { display: flex; gap: 0.5rem; }
+.btn-edit-sm {
+  background: #e8f4fd;
+  color: #2980b9;
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  transition: background 0.2s, color 0.2s;
+}
+.btn-edit-sm:hover { background: #2980b9; color: #fff; }
+.btn-del-sm {
+  background: #fde8e8;
+  color: #e74c3c;
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  transition: background 0.2s, color 0.2s;
+}
+.btn-del-sm:hover { background: #e74c3c; color: #fff; }
+.empty-row td { text-align: center; padding: 2.5rem; color: #bbb; }
+
+/* =============================================================
+   ADMIN FORM PAGES (addPerfume.jsp, editPerfume.jsp)
+   ============================================================= */
+.form-wrapper { max-width: 620px; margin: 2.5rem auto; padding: 0 1.5rem; }
+.form-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 2.25rem;
+  box-shadow: 0 4px 22px rgba(0,0,0,0.09);
+  border: 1px solid rgba(0,0,0,0.06);
+}
+.form-card h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin: 0 0 1.5rem;
+}
+.form-row { margin-bottom: 1rem; }
+.form-row label {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #777;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.form-row input,
+.form-row select,
+.form-row textarea {
+  width: 100%;
+  padding: 0.65rem 0.9rem;
+  border: 1.5px solid #e0ddd8;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-family: inherit;
+  color: #333;
+  background: #fafaf9;
+  box-sizing: border-box;
+  transition: border-color 0.2s, background 0.2s;
+}
+.form-row input:focus,
+.form-row select:focus,
+.form-row textarea:focus {
+  border-color: var(--gold);
+  outline: none;
+  background: #fff;
+}
+.form-row textarea { resize: vertical; min-height: 80px; }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.btn-submit {
+  width: 100%;
+  padding: 0.85rem;
+  background: var(--navy);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-top: 0.5rem;
+  transition: background 0.2s;
+  font-family: inherit;
+}
+.btn-submit:hover { background: var(--gold); }
+.back-link {
+  display: inline-block;
+  margin-top: 1rem;
+  color: #aaa;
+  font-size: 0.85rem;
+  transition: color 0.2s;
+}
+.back-link:hover { color: var(--navy); }
+
+/* =============================================================
+   USER PROFILE (userDashboard.jsp)
+   ============================================================= */
+.profile-wrapper { max-width: 540px; margin: 2.5rem auto; padding: 0 1.5rem; }
+.profile-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 2.25rem;
+  box-shadow: 0 4px 22px rgba(0,0,0,0.09);
+  border: 1px solid rgba(0,0,0,0.06);
+  text-align: center;
+}
+.avatar {
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  color: #fff;
+  font-weight: 700;
+  margin: 0 auto 1.2rem;
+}
+.profile-card h1 { font-family: 'Cormorant Garamond', serif; font-size: 1.7rem; font-weight: 700; color: var(--navy); margin: 0 0 4px; }
+.email-display  { color: #aaa; font-size: 0.87rem; margin-bottom: 1.5rem; }
+.divider { border: none; border-top: 1px solid #f0f0f0; margin: 1.5rem 0; }
+
+/* Profile form reuses .form-row but needs left align */
+.profile-card .form-row { text-align: left; }
+.profile-card .form-row small { color: #ccc; font-size: 0.76rem; display: block; margin-top: 3px; }
+
+/* =============================================================
+   AUTH PAGES (login.jsp, register.jsp)
+   ============================================================= */
+.auth-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+.auth-card {
+  width: 100%;
+  max-width: 420px;
+  background: #fff;
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow: var(--shadow-lg);
+  text-align: center;
+}
+.auth-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--navy);
+  margin-bottom: 4px;
+}
+.auth-logo span { color: var(--gold); }
+.auth-tagline { color: var(--muted); font-size: 0.85rem; margin-bottom: 2rem; }
+.auth-card h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.7rem; margin-bottom: 1.5rem; }
+.auth-card .form-row { text-align: left; }
+.auth-switch { margin-top: 1.25rem; font-size: 0.85rem; color: var(--muted); }
+.auth-switch a { color: var(--gold); font-weight: 600; }
+.error-box {
+  background: #ffe6e6;
+  color: #cc3a3a;
+  padding: 10px 14px;
+  border-radius: 10px;
+  margin-bottom: 14px;
+  font-size: 0.87rem;
+  text-align: left;
+}
+
+/* =============================================================
+   CART PAGE
+   ============================================================= */
+.cart-list { display: flex; flex-direction: column; gap: 16px; }
+.cart-item {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr auto;
+  align-items: center;
+  gap: 18px;
+  padding: 22px;
+}
+.item-name { font-size: 1.05rem; font-weight: 500; }
+.item-note { color: var(--muted); margin-top: 4px; font-size: 0.83rem; }
+.item-price, .item-subtotal { font-weight: 500; }
+.qty-controls { display: flex; align-items: center; gap: 10px; }
+.qty-btn {
+  width: 32px; height: 32px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 8px;
+  background: var(--navy);
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.qty-btn:hover { background: var(--gold); }
+.remove-link { color: #c45d5d; font-size: 0.83rem; }
+.cart-summary {
+  margin-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 26px;
+}
+.summary-label  { color: var(--muted); }
+.summary-total  { font-family: 'Cormorant Garamond', serif; font-size: 2rem; }
+
+/* =============================================================
+   ABOUT / CONTACT PAGES
+   ============================================================= */
+.about-hero {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 28px;
+  margin-bottom: 32px;
+}
+.hero-copy { padding: 38px; }
+.hero-art {
+  min-height: 400px;
+  background: linear-gradient(135deg, #f1e4cf, #d7c0a0);
+  border-radius: var(--radius);
+  position: relative;
+  overflow: hidden;
+}
+.feature-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 22px; }
+.feature-card { padding: 28px; }
+.feature-card h2 { font-family: 'Cormorant Garamond', serif; margin-bottom: 12px; }
+.feature-card p  { color: var(--muted); line-height: 1.7; }
+
+/* =============================================================
+   TABLES (generic)
+   ============================================================= */
+.table-wrapper { padding: 28px; margin-top: 30px; }
+.section-title { font-family: 'Cormorant Garamond', serif; font-size: 1.9rem; margin-bottom: 18px; }
+
+/* =============================================================
+   RESPONSIVE
+   ============================================================= */
+@media (max-width: 960px) {
+  .dashboard-layout,
+  .about-hero,
+  .feature-grid { grid-template-columns: 1fr; }
+  .stat-grid    { grid-template-columns: repeat(2,1fr); }
+  .action-grid  { grid-template-columns: 1fr; }
+}
+@media (max-width: 700px) {
+  .navbar       { padding: 0 18px; }
+  .admin-navbar { padding: 0 16px; }
+  .stat-grid    { grid-template-columns: 1fr; }
+  .welcome-title { font-size: 2.8rem; }
+  .page-title    { font-size: 2.6rem; }
+  .vibe-grid    { grid-template-columns: 1fr; }
+  .cart-item    { grid-template-columns: 1fr; }
+  .form-grid    { grid-template-columns: 1fr; }
+  .nav-links    { gap: 4px; }
+}
+/* =============================================================
+   PREMIUM AUTH UPGRADE (Glass + Animations)
+   ============================================================= */
+
+/* Background gradient */
+body {
+  background: linear-gradient(135deg, #f7f4ef 0%, #efe7dc 100%);
+}
+
+/* Center wrapper animation */
+.auth-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  animation: fadeIn 0.8s ease;
+}
+
+/* Glass card upgrade */
+.auth-card {
+  width: 100%;
+  max-width: 420px;
+  padding: 2.5rem;
+  border-radius: 22px;
+
+  background: rgba(255,255,255,0.55);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+
+  border: 1px solid rgba(255,255,255,0.4);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+
+  animation: slideUp 0.7s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.auth-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 30px 70px rgba(0,0,0,0.2);
+}
+
+/* Inputs */
+.form-row input {
+  width: 100%;
+  padding: 0.7rem 0.9rem;
+  border-radius: 10px;
+  border: 1.5px solid #e0ddd8;
+  background: rgba(255,255,255,0.85);
+  transition: all 0.25s ease;
+}
+
+.form-row input:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 4px rgba(184,150,78,0.15);
+  outline: none;
+  transform: scale(1.02);
+}
+
+/* Button upgrade */
+.btn-submit,
+.btn-primary {
+  width: 100%;
+  padding: 0.9rem;
+  border-radius: 999px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+
+  background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+  color: #fff;
+
+  transition: all 0.3s ease;
+}
+
+.btn-submit:hover,
+.btn-primary:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 12px 28px rgba(184,150,78,0.35);
+}
+
+/* Links */
+.auth-switch a {
+  position: relative;
+}
+
+.auth-switch a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0%;
+  height: 2px;
+  background: var(--gold);
+  transition: width 0.3s;
+}
+
+.auth-switch a:hover::after {
+  width: 100%;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+/* Premium navbar */
+.navbar {
+  backdrop-filter: blur(20px);
+  background: rgba(255,255,255,0.65);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+/* Universal glass card system */
+.glass-card,
+.stat-card,
+.action-card,
+.profile-card,
+.form-card,
+.table-card,
+.activity-section {
+
+  background: rgba(255,255,255,0.65) !important;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  border: 1px solid rgba(255,255,255,0.4);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+
+  transition: all 0.3s ease;
+}
+
+.glass-card:hover,
+.stat-card:hover,
+.action-card:hover,
+.profile-card:hover {
+  transform: translateY(-4px);
+}
+body {
+  animation: fadeIn 0.6s ease;
+}
+/* =========================
+   CART CLEAN UI FIX
+========================= */
+
+.cart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.cart-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Card layout */
+.cart-card {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1.2fr 1fr 0.8fr;
+  align-items: center;
+  gap: 1rem;
+
+  padding: 1.2rem 1.5rem;
+  border-radius: 14px;
+
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+
+  transition: 0.2s ease;
+}
+
+.cart-card:hover {
+  transform: translateY(-2px);
+}
+
+/* Sections */
+.cart-info h2 {
+  font-size: 1.2rem;
+  margin-bottom: 3px;
+}
+
+.cart-info p {
+  font-size: 0.85rem;
+  color: #888;
+}
+
+.cart-price,
+.cart-subtotal {
+  font-weight: 500;
+}
+
+/* Quantity */
+.cart-qty {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cart-qty a {
+  width: 28px;
+  height: 28px;
+  background: #1a1a2e;
+  color: white;
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+}
+
+.cart-qty span {
+  font-weight: 500;
+}
+
+/* Remove */
+.cart-remove a {
+  color: #e74c3c;
+  font-size: 0.85rem;
+}
+
+/* Summary */
+.cart-summary-box {
+  margin-top: 2rem;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 1.5rem;
+  border-radius: 14px;
+
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(12px);
+}
+/* =========================
+   PREMIUM ADMIN DASHBOARD
+========================= */
+
+/* Background */
+body {
+  background: linear-gradient(135deg, #f7f4ef, #efe7dc);
+}
+
+/* Header */
+.premium-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Gradient stat cards */
+.gradient-card {
+  background: linear-gradient(135deg, #b8964e, #8d6b35);
+  color: white;
+}
+
+.gradient-card.blue {
+  background: linear-gradient(135deg, #2b4a9e, #1e3575);
+}
+
+.gradient-card.orange {
+  background: linear-gradient(135deg, #e67e22, #c96a12);
+}
+
+.gradient-card .stat-label {
+  color: rgba(255,255,255,0.8);
+}
+
+/* Hover lift */
+.stat-card,
+.action-card {
+  transition: all 0.25s ease;
+}
+
+.stat-card:hover,
+.action-card:hover {
+  transform: translateY(-4px);
+}
+
+/* Actions cleaner */
+.premium-actions .action-card {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Activity table upgrade */
+.premium-activity {
+  backdrop-filter: blur(12px);
+  background: rgba(255,255,255,0.65);
+}
+
+/* Smooth animation */
+.dashboard-wrapper {
+  animation: fadeIn 0.6s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
 }

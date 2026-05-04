@@ -4,42 +4,68 @@ String contextPath = request.getContextPath();
 String error = (String) request.getAttribute("error");
 %>
 
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout | Scentia</title>
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">
+    <link rel="stylesheet" href="<%= contextPath %>/css/style.css">
 </head>
 
 <body>
 
-<header class="navbar">
-    <a href="<%= contextPath %>/home">Scentia</a>
-</header>
 
+<nav class="navbar">
+  <a href="<%= contextPath %>/home" class="logo">Scent<span>ia</span></a>
+  <div class="nav-links">
+    <a href="<%= contextPath %>/home" class="nav-link">Home</a>
+    <a href="<%= contextPath %>/perfume?view=user" class="nav-link">Perfume</a>
+    <a href="<%= contextPath %>/about" class="nav-link">About</a>
+    <a href="<%= contextPath %>/contact" class="nav-link">Contact</a>
+    <a href="<%= contextPath %>/cart" class="nav-link">Cart</a>
+  </div>
+</nav>
+
+<!-- ✅ FIXED LAYOUT (prevents overlap) -->
+<div class="main-container">
 <main class="page-shell">
 
-<h1>Checkout</h1>
+<div class="form-wrapper">
+  <div class="form-card">
 
-<% if (error != null) { %>
-    <p style="color:red;"><%= error %></p>
-<% } %>
+    <h1>Checkout</h1>
 
-<form action="<%= contextPath %>/checkout" method="post">
+    <% if (error != null) { %>
+        <div class="error-box"><%= error %></div>
+    <% } %>
 
-    <label>Full Name</label><br>
-    <input name="name" required><br><br>
+    <form action="<%= contextPath %>/checkout" method="post">
 
-    <label>Address</label><br>
-    <input name="address" required><br><br>
+        <div class="form-row">
+            <label>Full Name</label>
+            <input type="text" name="name" required>
+        </div>
 
-    <label>Phone</label><br>
-    <input name="phone" required><br><br>
+        <div class="form-row">
+            <label>Address</label>
+            <input type="text" name="address" required>
+        </div>
 
-    <button type="submit">Place Order</button>
+        <div class="form-row">
+            <label>Phone</label>
+            <input type="text" name="phone" required>
+        </div>
 
-</form>
+        <button type="submit" class="btn-submit">Place Order</button>
+
+    </form>
+
+  </div>
+</div>
 
 </main>
+</div>
 
 </body>
 </html>

@@ -1,149 +1,143 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page import="com.scentia.model.User" %>
 
 <%
 String contextPath = request.getContextPath();
+User user = (User) session.getAttribute("user");
+
+if (user == null) {
+    response.sendRedirect(contextPath + "/login");
+    return;
+}
+if (!"admin".equals(user.getRole())) {
+    response.sendRedirect(contextPath + "/home");
+    return;
+}
+
 String msg = request.getParameter("msg");
+int totalPerfumes = request.getAttribute("totalPerfumes") != null
+    ? (int) request.getAttribute("totalPerfumes") : 0;
+int totalUsers = request.getAttribute("totalUsers") != null
+    ? (int) request.getAttribute("totalUsers") : 0;
+int lowStock = request.getAttribute("lowStock") != null
+    ? (int) request.getAttribute("lowStock") : 0;
 %>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Admin Panel | Scentia</title>
-
-  <link rel="stylesheet" href="<%= contextPath %>/css/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | Scentia</title>
+ <link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">
 </head>
-
 <body>
 
-<!-- NAVBAR -->
-<nav class="navbar">
-  <a href="<%= contextPath %>/home" class="logo">
-    Scent<span>ia</span>
-  </a>
-
-  <div class="nav-links">
-    <a href="<%= contextPath %>/home" class="nav-link">User View</a>
-    <a href="<%= contextPath %>/logout" class="nav-link">Logout</a>
+<!-- ADMIN NAVBAR -->
+<nav class="admin-navbar">
+  <a href="<%= contextPath %>/admin" class="logo">Scent<span>ia</span></a>
+  <div class="admin-nav-links">
+    <a href="<%= contextPath %>/admin" class="active">Dashboard</a>
+    <a href="<%= contextPath %>/admin/perfumes">Manage Perfumes</a>
+    <a href="<%= contextPath %>/admin/users">Manage Users</a>
+    <a href="<%= contextPath %>/logout" class="btn-logout">Logout</a>
   </div>
 </nav>
 
-<!-- MAIN -->
-<main class="main-container">
-
-<div class="dashboard-container">
+<div class="dashboard-wrapper">
 
   <!-- HEADER -->
-  <header class="welcome-section">
-    <p class="welcome-eyebrow">Control Panel</p>
-    <h1 class="welcome-title">Admin Dashboard</h1>
-    <p class="welcome-subtitle">
-      Manage your fragrance system effortlessly
-    </p>
-  </header>
+  <div class="dash-header premium-header">
+    <div>
+      <p class="eyebrow">Control Panel</p>
+      <h1>Admin Dashboard</h1>
+      <p>Manage your fragrance system — inventory, users, and activity.</p>
+    </div>
 
-<% if (msg != null) { %>
-  <div class="toast">
+    <div class="header-actions">
+      <a href="<%= contextPath %>/admin/addPerfume" class="btn-primary">+ Add Perfume</a>
+    </div>
+  </div>
+
+  <% if (msg != null && !msg.isEmpty()) { %>
+  <div class="toast-msg">
     <%= msg %>
   </div>
-<% } %>
+  <% } %>
 
-<!-- ACTION CARDS -->
-<div class="admin-grid">
+  <!-- STAT CARDS -->
+  <div class="stat-grid premium-stats">
+    <div class="stat-card gradient-card">
+      <div class="stat-icon">✨</div>
+      <div>
+        <div class="stat-num"><%= totalPerfumes %></div>
+        <div class="stat-label">Total Perfumes</div>
+      </div>
+    </div>
 
-  <!-- MANAGE PERFUMES (FIXED LINK ONLY) -->
-  <div class="admin-card"
-       onclick="location.href='<%= contextPath %>/admin/perfumes'">
-    <div class="admin-icon-box bg-soft-pink">✨</div>
-    <div class="admin-info">
+    <div class="stat-card gradient-card blue">
+      <div class="stat-icon">👥</div>
+      <div>
+        <div class="stat-num"><%= totalUsers %></div>
+        <div class="stat-label">Total Users</div>
+      </div>
+    </div>
+
+    <div class="stat-card gradient-card orange">
+      <div class="stat-icon">⚠️</div>
+      <div>
+        <div class="stat-num"><%= lowStock %></div>
+        <div class="stat-label">Low Stock</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUICK ACTION -->
+  <div class="action-grid premium-actions">
+    <a class="action-card" href="<%= contextPath %>/admin/perfumes">
       <h3>Manage Perfumes</h3>
-      <p>View, edit, and delete perfumes</p>
-    </div>
-  </div>
+      <p>Update and control inventory</p>
+    </a>
 
-  <!-- USERS -->
-  <div class="admin-card"
-       onclick="location.href='<%= contextPath %>/manageUsers'">
-    <div class="admin-icon-box bg-soft-mint">👥</div>
-    <div class="admin-info">
+    <a class="action-card" href="<%= contextPath %>/admin/users">
       <h3>Manage Users</h3>
-      <p>Edit users and control access levels</p>
-    </div>
+      <p>Control access & accounts</p>
+    </a>
+
+    <a class="action-card" href="<%= contextPath %>/perfume">
+      <h3>View Store</h3>
+      <p>See user experience</p>
+    </a>
   </div>
 
-  <!-- ANALYTICS -->
-  <div class="admin-card"
-       onclick="location.href='<%= contextPath %>/analytics'">
-    <div class="admin-icon-box bg-soft-cream">📊</div>
-    <div class="admin-info">
-      <h3>Analytics</h3>
-      <p>View trends and insights</p>
-    </div>
-  </div>
-
-  <!-- SETTINGS -->
-  <div class="admin-card"
-       onclick="location.href='<%= contextPath %>/settings'">
-    <div class="admin-icon-box bg-soft-gray">⚙️</div>
-    <div class="admin-info">
-      <h3>Settings</h3>
-      <p>System configuration</p>
-    </div>
-  </div>
-
-</div>
-
-<!-- 💎 RECENT ACTIVITY (RESTORED EXACTLY) -->
-<section class="activity-section">
-
-  <div class="glass-card full-width">
-
-    <h2 class="section-title">Recent Activity</h2>
+  <!-- ACTIVITY -->
+  <div class="activity-section premium-activity">
+    <h2>Recent Activity</h2>
 
     <table>
-      <thead>
-        <tr>
-          <th>User</th>
-          <th>Action</th>
-          <th>Status</th>
-          <th>Time</th>
-        </tr>
-      </thead>
-
       <tbody>
-
         <tr>
           <td>Aasuka Pun</td>
-          <td>Matched with 'Velvet Rose'</td>
-          <td><span class="status-badge status-match">Match</span></td>
+          <td>Matched with Velvet Rose</td>
+          <td><span class="badge badge-match">Match</span></td>
           <td>2 mins ago</td>
         </tr>
-
         <tr>
           <td>Chomolung Rai</td>
           <td>Updated Profile</td>
-          <td><span class="status-badge status-update">Update</span></td>
+          <td><span class="badge badge-update">Update</span></td>
           <td>15 mins ago</td>
         </tr>
-
         <tr>
           <td>Stuti Upadhaya</td>
           <td>New Registration</td>
-          <td><span class="status-badge status-register">New</span></td>
+          <td><span class="badge badge-register">New</span></td>
           <td>1 hour ago</td>
         </tr>
-
       </tbody>
-
     </table>
-
   </div>
 
-</section>
-
 </div>
-
-</main>
-
 </body>
 </html>

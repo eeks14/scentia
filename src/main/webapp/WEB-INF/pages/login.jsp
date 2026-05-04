@@ -1,4 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8" %>
+<%
+String contextPath = request.getContextPath();
+String error = (String) request.getAttribute("error");
+%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,38 +14,35 @@
 </head>
 <body>
 
-<nav class="navbar">
-  <a href="<%= request.getContextPath() %>/home" class="logo">Scent<span>ia</span></a>
-</nav>
+<div class="auth-wrapper">
+  <div class="auth-card glass-card">
 
-<main class="main-container">
-  <div class="glass-card form-card">
+    <div class="auth-logo">Scent<span>ia</span></div>
+    <p class="auth-tagline">Conscious fragrance, curated for you.</p>
 
-    <p class="form-eyebrow">Welcome back</p>
-    <h1 class="form-title">Sign In</h1>
-    <p class="form-subtitle">Your scent profile awaits</p>
+    <h2>Welcome Back</h2>
 
-    <form action="<%= request.getContextPath() %>/login" method="post">
+    <% if (error != null) { %>
+      <div class="error-box"><%= error %></div>
+    <% } %>
 
-      <% String error = (String) request.getAttribute("error"); %>
-      <% if (error != null) { %>
-        <div class="error-box"><%= error %></div>
-      <% } %>
-
-      <div class="form-group">
-        <input type="email"    name="email"    class="form-input" placeholder="Email Address" required>
+    <form action="<%= contextPath %>/login" method="post">
+      <div class="form-row">
+        <label>Email</label>
+        <input class="form-input" type="email" name="email" placeholder="you@example.com" required>
       </div>
-      <div class="form-group">
-        <input type="password" name="password" class="form-input" placeholder="Password"      required>
+      <div class="form-row">
+        <label>Password</label>
+        <input class="form-input" type="password" name="password" placeholder="••••••••" required>
       </div>
-
-      <button type="submit" class="btn-primary">Sign In</button>
+      <button type="submit" class="btn-primary" style="width:100%;margin-top:0.5rem;">Sign In</button>
     </form>
 
-    <p class="form-footer">New to Scentia? <a href="register">Create an account</a></p>
+    <p class="auth-switch">
+      Don't have an account? <a href="<%= contextPath %>/register">Register</a>
+    </p>
 
   </div>
-</main>
-
+</div>
 </body>
 </html>

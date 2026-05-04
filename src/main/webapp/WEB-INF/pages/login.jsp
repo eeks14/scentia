@@ -5,12 +5,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login | Scentia</title>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">
 </head>
 <body>
 
 <nav class="navbar">
-  <a href="home" class="logo">Scent<span>ia</span></a>
+  <a href="<%= request.getContextPath() %>/home" class="logo">Scent<span>ia</span></a>
 </nav>
 
 <main class="main-container">
@@ -20,7 +20,7 @@
     <h1 class="form-title">Sign In</h1>
     <p class="form-subtitle">Your scent profile awaits</p>
 
-    <form action="login" method="post">
+    <form action="<%= request.getContextPath() %>/login" method="post">
 
       <% String error = (String) request.getAttribute("error"); %>
       <% if (error != null) { %>

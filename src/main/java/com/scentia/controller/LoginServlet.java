@@ -1,6 +1,8 @@
 package com.scentia.controller;
 
 import com.scentia.config.DBConfig;
+import com.scentia.model.User;
+
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.WebServlet;
@@ -43,20 +45,30 @@ public class LoginServlet extends HttpServlet {
 
             if (rs.next()) {
 
-                String name = rs.getString("name");
-                String role = rs.getString("role");
+            	String name = rs.getString("name");
+            	String role = rs.getString("role");
+
+            	// CREATE USER OBJECT
+            	User user = new User();
+            	user.setName(name);
+            	user.setEmail(email);
+            	user.setRole(role);
+
+            	// STORE IN SESSION
+            	HttpSession session = req.getSession();
+            	session.setAttribute("user", user);
 
                 
-                HttpSession session = req.getSession();
-                session.setAttribute("userName", name);
-                session.setAttribute("role", role);
+            	if ("admin".equals(role)) {
 
-                
-                if ("admin".equals(role)) {
-                    res.sendRedirect("admin");   // admin dashboard
+                    res.sendRedirect(req.getContextPath() + "/admin");
+
                 } else {
-                    res.sendRedirect("home");    // user dashboard
+
+                    res.sendRedirect(req.getContextPath() + "/home");
                 }
+
+                return;
 
             } else {
                 req.setAttribute("error", "Invalid email or password!");

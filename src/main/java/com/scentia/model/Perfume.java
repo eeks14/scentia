@@ -1,0 +1,96 @@
+package com.scentia.model;
+
+public class Perfume {
+
+    private int id;
+    private String name;
+    private String brand;
+    private String category;
+    private String notes;
+    private double price;
+    private String imageUrl;
+    private int stock;
+    private String description;
+    private int sustainabilityScore;
+
+    public Perfume() {}
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public int getStock() {
+        return stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    public int getSustainabilityScore() {
+        return sustainabilityScore;
+    }
+
+    public void setSustainabilityScore(int sustainabilityScore) {
+        this.sustainabilityScore = sustainabilityScore;
+    }
+}

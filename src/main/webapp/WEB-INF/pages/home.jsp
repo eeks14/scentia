@@ -1,12 +1,24 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page import="com.scentia.model.User" %>
+
 <%
-  String fullName = (String) session.getAttribute("userName");
+String contextPath = request.getContextPath();
 
-  if (fullName == null || fullName.trim().isEmpty()) {
-      fullName = "Guest";
-  }
+// SESSION CHECK
+User user = (User) session.getAttribute("user");
 
-  String firstName = fullName.split(" ")[0];
+if (user == null) {
+    response.sendRedirect(contextPath + "/login");
+    return;
+}
+
+// GET USER NAME
+String fullName = user.getName();
+if (fullName == null || fullName.trim().isEmpty()) {
+    fullName = "Guest";
+}
+
+String firstName = fullName.split(" ")[0];
 %>
 
 <!DOCTYPE html>
@@ -15,19 +27,30 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard | Scentia</title>
-  <link rel="stylesheet" href="css/style.css">
+
+  <link rel="stylesheet" href="<%= contextPath %>/css/style.css">
 </head>
 
 <body>
 
+<!-- NAVBAR -->
 <nav class="navbar">
-  <a href="home" class="logo">Scent<span>ia</span></a>
+
+  <a href="<%= contextPath %>/home" class="logo">
+    Scent<span>ia</span>
+  </a>
+
   <div class="nav-links">
-    <a href="admin" class="nav-link">Admin</a>
-    <a href="login" class="nav-link btn-logout">Logout</a>
+    <a href="<%= contextPath %>/home" class="nav-link">Home</a>
+    <a href="<%= contextPath %>/perfume" class="nav-link">Browse</a>
+    <a href="<%= contextPath %>/cart" class="nav-link">Cart</a>
+    <a href="<%= contextPath %>/admin" class="nav-link">Admin</a>
+    <a href="<%= contextPath %>/logout" class="nav-link btn-logout">Logout</a>
   </div>
+
 </nav>
 
+<!-- MAIN -->
 <main class="main-container">
 
 <div class="dashboard-container">
@@ -36,7 +59,13 @@
   <header class="welcome-section">
     <p class="welcome-eyebrow">Your Profile</p>
     <h1 class="welcome-title">Hello, <%= firstName %></h1>
-    <p class="welcome-subtitle">Discover your signature scent today</p>
+    <p class="welcome-subtitle">
+      Discover your signature scent today
+    </p>
+
+    <a href="<%= contextPath %>/perfume" class="btn-primary">
+      Explore Perfumes
+    </a>
   </header>
 
   <div class="dashboard-layout">
@@ -47,7 +76,10 @@
 
       <div class="vibe-grid">
 
-        <div class="vibe-card" style="background-image:url('https://i.pinimg.com/736x/64/56/e1/6456e1536d6b1ee2006f52f220d0ff70.jpg');">
+        <!-- SOFT -->
+        <div class="vibe-card"
+             onclick="location.href='<%= contextPath %>/perfume?vibe=Soft'"
+             style="background-image:url('https://i.pinimg.com/736x/64/56/e1/6456e1536d6b1ee2006f52f220d0ff70.jpg');">
           <span class="vibe-badge">Soft</span>
           <div class="overlay">
             <h3>Soft</h3>
@@ -55,7 +87,10 @@
           </div>
         </div>
 
-        <div class="vibe-card" style="background-image:url('https://i.pinimg.com/736x/de/df/41/dedf411d00b07d9221f5056d4beaeea3.jpg');">
+        <!-- BOLD -->
+        <div class="vibe-card"
+             onclick="location.href='<%= contextPath %>/perfume?vibe=Bold'"
+             style="background-image:url('https://i.pinimg.com/736x/de/df/41/dedf411d00b07d9221f5056d4beaeea3.jpg');">
           <span class="vibe-badge">Bold</span>
           <div class="overlay">
             <h3>Bold</h3>
@@ -63,7 +98,10 @@
           </div>
         </div>
 
-        <div class="vibe-card" style="background-image:url('https://i.pinimg.com/1200x/aa/0b/7e/aa0b7ef85f8b85ec453ed74dcbb69734.jpg');">
+        <!-- SWEET -->
+        <div class="vibe-card"
+             onclick="location.href='<%= contextPath %>/perfume?vibe=Sweet'"
+             style="background-image:url('https://i.pinimg.com/1200x/aa/0b/7e/aa0b7ef85f8b85ec453ed74dcbb69734.jpg');">
           <span class="vibe-badge">Sweet</span>
           <div class="overlay">
             <h3>Sweet</h3>
@@ -71,7 +109,10 @@
           </div>
         </div>
 
-        <div class="vibe-card" style="background-image:url('https://i.pinimg.com/736x/a8/1b/ea/a81bea9a7fe9e682e6ba9a93686d4542.jpg');">
+        <!-- FRESH -->
+        <div class="vibe-card"
+             onclick="location.href='<%= contextPath %>/perfume?vibe=Fresh'"
+             style="background-image:url('https://i.pinimg.com/736x/a8/1b/ea/a81bea9a7fe9e682e6ba9a93686d4542.jpg');">
           <span class="vibe-badge">Fresh</span>
           <div class="overlay">
             <h3>Fresh</h3>
@@ -89,7 +130,6 @@
 
         <p class="section-label">Top Matches For You</p>
 
-        <!-- ITEM 1 -->
         <div class="recommendation-item">
           <img src="https://i.pinimg.com/1200x/54/64/7a/54647a18714b6b5a47288333a21bceda.jpg" class="perfume-img">
           <div class="rec-info">
@@ -101,7 +141,6 @@
 
         <div class="rec-divider"></div>
 
-        <!-- ITEM 2 -->
         <div class="recommendation-item">
           <img src="https://i.pinimg.com/1200x/5a/ca/8c/5aca8c9bce085ff6fae40cfa82d83bd3.jpg" class="perfume-img">
           <div class="rec-info">
@@ -113,7 +152,6 @@
 
         <div class="rec-divider"></div>
 
-        <!-- ITEM 3 (ADDED MISSING VISUAL BALANCE) -->
         <div class="recommendation-item">
           <img src="https://i.pinimg.com/736x/ac/cf/2a/accf2a69cfa62e7d7b5d8bb61ff89fef.jpg" class="perfume-img">
           <div class="rec-info">
@@ -125,7 +163,9 @@
 
         <div class="rec-divider"></div>
 
-        <button class="btn-primary">Refine My Match</button>
+        <button class="btn-primary">
+          Refine My Match
+        </button>
 
       </div>
 

@@ -32,7 +32,7 @@ String contextPath = request.getContextPath();
 
     <h1>Contact Us</h1>
 
-    <form>
+    <form action="<%= request.getContextPath() %>/contact" method="post">
         <div class="form-row">
             <label>Name</label>
             <input type="text" required>

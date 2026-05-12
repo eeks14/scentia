@@ -2,6 +2,7 @@ package com.scentia.controller;
 
 import com.scentia.config.DBConfig;
 import com.scentia.model.User;
+import com.scentia.util.ValidationUtil;
 
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -21,8 +22,10 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse res)
             throws ServletException, IOException {
 
-        String email = req.getParameter("email");
-        String password = req.getParameter("password");
+    	String email = req.getParameter("email").trim();
+    	String password = req.getParameter("password").trim();
+
+    	
 
         // Validation
         if (email == null || password == null ||
@@ -37,9 +40,10 @@ public class LoginServlet extends HttpServlet {
 
             String query = "SELECT * FROM users WHERE email=? AND password=?";
             PreparedStatement stmt = conn.prepareStatement(query);
+            String hashedPassword = ValidationUtil.hashPassword(password);
 
             stmt.setString(1, email);
-            stmt.setString(2, password);
+            stmt.setString(2, hashedPassword);
 
             ResultSet rs = stmt.executeQuery();
 
@@ -50,9 +54,10 @@ public class LoginServlet extends HttpServlet {
 
             	// CREATE USER OBJECT
             	User user = new User();
-            	user.setName(name);
-            	user.setEmail(email);
-            	user.setRole(role);
+            	user.setId(rs.getInt("user_id"));
+            	user.setName(rs.getString("name"));
+            	user.setEmail(rs.getString("email"));
+            	user.setRole(rs.getString("role"));
 
             	// STORE IN SESSION
             	HttpSession session = req.getSession();

@@ -2,6 +2,7 @@ package com.scentia.controller;
 
 import com.scentia.config.DBConfig;
 import com.scentia.model.User;
+import com.scentia.util.ValidationUtil;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -76,7 +77,8 @@ public class UserDashboardServlet extends HttpServlet {
                     "UPDATE users SET name=?, email=?, password=? WHERE id=?");
                 ps.setString(1, newName);
                 ps.setString(2, newEmail);
-                ps.setString(3, newPassword.trim());
+                ps.setString(3,
+                	    ValidationUtil.hashPassword(newPassword.trim()));
                 ps.setInt(4, user.getId());
             } else {
                 ps = conn.prepareStatement(

@@ -44,30 +44,31 @@ int lowStock = request.getAttribute("lowStock") != null
   </div>
 </nav>
 
-<div class="dashboard-wrapper">
+<div class="dashboard-wrapper admin-dashboard">
 
   <!-- HEADER -->
   <div class="dash-header premium-header">
-    <div>
+    <div class="header-left">
       <p class="eyebrow">Control Panel</p>
       <h1>Admin Dashboard</h1>
       <p>Manage your fragrance system — inventory, users, and activity.</p>
     </div>
 
-    <div class="header-actions">
-      <a href="<%= contextPath %>/admin/addPerfume" class="btn-primary">+ Add Perfume</a>
+    <div class="header-right">
+      <a href="<%= contextPath %>/admin/addPerfume" class="btn-primary">
+        + Add Perfume
+      </a>
     </div>
   </div>
 
   <% if (msg != null && !msg.isEmpty()) { %>
-  <div class="toast-msg">
-    <%= msg %>
-  </div>
+    <div class="toast-msg"><%= msg %></div>
   <% } %>
 
-  <!-- STAT CARDS -->
+  <!-- STATS -->
   <div class="stat-grid premium-stats">
-    <div class="stat-card gradient-card">
+
+    <div class="stat-card gradient-card pink">
       <div class="stat-icon">✨</div>
       <div>
         <div class="stat-num"><%= totalPerfumes %></div>
@@ -90,31 +91,40 @@ int lowStock = request.getAttribute("lowStock") != null
         <div class="stat-label">Low Stock</div>
       </div>
     </div>
+
   </div>
 
-  <!-- QUICK ACTION -->
+  <!-- QUICK ACTIONS -->
   <div class="action-grid premium-actions">
+
     <a class="action-card" href="<%= contextPath %>/admin/perfumes">
-      <h3>Manage Perfumes</h3>
-      <p>Update and control inventory</p>
+      <div>
+        <h3>Manage Perfumes</h3>
+        <p>Update inventory & pricing</p>
+      </div>
     </a>
 
     <a class="action-card" href="<%= contextPath %>/admin/users">
-      <h3>Manage Users</h3>
-      <p>Control access & accounts</p>
+      <div>
+        <h3>Manage Users</h3>
+        <p>Control accounts & access</p>
+      </div>
     </a>
 
     <a class="action-card" href="<%= contextPath %>/perfume">
-      <h3>View Store</h3>
-      <p>See user experience</p>
+      <div>
+        <h3>View Store</h3>
+        <p>Preview customer experience</p>
+      </div>
     </a>
+
   </div>
 
   <!-- ACTIVITY -->
   <div class="activity-section premium-activity">
     <h2>Recent Activity</h2>
 
-    <table>
+    <table class="activity-table">
       <tbody>
         <tr>
           <td>Aasuka Pun</td>
@@ -122,12 +132,14 @@ int lowStock = request.getAttribute("lowStock") != null
           <td><span class="badge badge-match">Match</span></td>
           <td>2 mins ago</td>
         </tr>
+
         <tr>
           <td>Chomolung Rai</td>
           <td>Updated Profile</td>
           <td><span class="badge badge-update">Update</span></td>
           <td>15 mins ago</td>
         </tr>
+
         <tr>
           <td>Stuti Upadhaya</td>
           <td>New Registration</td>

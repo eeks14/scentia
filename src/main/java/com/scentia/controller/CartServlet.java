@@ -63,7 +63,7 @@ public class CartServlet extends HttpServlet {
                         item.setQuantity(1);
 
                        
-                        item.setPrice(120.0);
+                        item.setPrice(rs.getDouble("price"));
 
                         cart.add(item);
                     }

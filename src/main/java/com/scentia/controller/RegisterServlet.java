@@ -4,7 +4,7 @@ import com.scentia.config.DBConfig;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.WebServlet;
-
+import com.scentia.util.ValidationUtil;
 import java.io.IOException;
 import java.sql.*;
 
@@ -38,6 +38,14 @@ public class RegisterServlet extends HttpServlet {
             req.getRequestDispatcher("WEB-INF/pages/register.jsp").forward(req, res);
             return;
         }
+        if (!ValidationUtil.isValidName(name)) {
+            req.setAttribute("error",
+                    "Full name must contain letters only!");
+
+            req.getRequestDispatcher("WEB-INF/pages/register.jsp")
+                    .forward(req, res);
+            return;
+        }
 
         if (!password.equals(confirmPassword)) {
             req.setAttribute("error", "Passwords do not match!");
@@ -45,7 +53,7 @@ public class RegisterServlet extends HttpServlet {
             return;
         }
 
-        if (password.length() < 6) {
+        if (!ValidationUtil.isValidPassword(password)) {
             req.setAttribute("error", "Password must be at least 6 characters!");
             req.getRequestDispatcher("WEB-INF/pages/register.jsp").forward(req, res);
             return;
@@ -75,7 +83,10 @@ public class RegisterServlet extends HttpServlet {
 
             stmt.setString(1, name);
             stmt.setString(2, email);
-            stmt.setString(3, password);
+            String hashedPassword =
+                    ValidationUtil.hashPassword(password);
+
+            stmt.setString(3, hashedPassword);
             stmt.setString(4, role);
 
             stmt.executeUpdate();

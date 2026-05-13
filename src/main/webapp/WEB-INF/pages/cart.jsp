@@ -118,6 +118,49 @@ if (cart != null && !cart.isEmpty()) {
 
 </main>
 </div>
+<script>
 
+document.addEventListener("DOMContentLoaded", () => {
+
+    /* REMOVE ANIMATION */
+    document.querySelectorAll(".cart-remove a").forEach(btn => {
+
+        btn.addEventListener("click", function(e) {
+
+            e.preventDefault();
+
+            const card = this.closest(".cart-card");
+
+            card.classList.add("removing");
+
+            setTimeout(() => {
+                window.location.href = this.href;
+            }, 300);
+
+        });
+
+    });
+
+    /* QUANTITY ANIMATION */
+    document.querySelectorAll(".cart-qty a").forEach(btn => {
+
+        btn.addEventListener("click", function() {
+
+            const qty =
+                this.parentElement.querySelector("span");
+
+            qty.classList.add("bump");
+
+            setTimeout(() => {
+                qty.classList.remove("bump");
+            }, 250);
+
+        });
+
+    });
+
+});
+
+</script>
 </body>
 </html>

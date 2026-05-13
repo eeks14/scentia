@@ -611,3 +611,522 @@ body {
     transform: translateY(0);
   }
 }
+/* =============================================================
+   SCENTIA CART PAGE (FIXED + PREMIUM LAYOUT)
+   ============================================================= */
+
+/* Page wrapper alignment */
+.page-shell {
+    width: min(1100px, 92%);
+    margin: 120px auto 60px auto;
+}
+
+/* Header section */
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.page-kicker {
+    font-size: 0.8rem;
+    color: var(--muted);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.page-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem;
+    color: var(--navy);
+}
+
+/* Cart list */
+.cart-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Cart card */
+/* FIXED CART ALIGNMENT (FLEX + PROPER DISTRIBUTION) */
+.cart-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 18px 20px;
+    margin-bottom: 14px;
+
+    background: rgba(255,255,255,0.75);
+    backdrop-filter: blur(16px);
+
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+.cart-card:hover {
+    transform: translateY(-3px);
+}
+
+/* Product info */
+.cart-info .item-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--navy);
+}
+
+.cart-info .item-note {
+    font-size: 0.85rem;
+    color: var(--muted);
+}
+
+/* Price */
+.cart-price {
+    font-weight: 600;
+    color: var(--text);
+}
+
+/* Quantity controls */
+.cart-qty {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+}
+
+.cart-qty a {
+    width: 28px;
+    height: 28px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+    background: rgba(0,0,0,0.06);
+    font-weight: bold;
+
+    transition: 0.2s ease;
+}
+
+.cart-qty a:hover {
+    background: var(--gold);
+    color: white;
+    transform: scale(1.1);
+}
+
+/* Subtotal */
+.cart-subtotal {
+    font-weight: 700;
+    color: var(--navy);
+}
+
+/* Remove */
+.cart-remove a {
+    font-size: 0.85rem;
+    color: #e74c3c;
+    font-weight: 500;
+    transition: 0.2s;
+}
+
+.cart-remove a:hover {
+    text-decoration: underline;
+}
+
+/* Empty cart */
+.empty-state {
+    text-align: center;
+    padding: 50px;
+    font-size: 1rem;
+    color: var(--muted);
+}
+
+/* Cart summary box */
+.cart-summary-box {
+    margin-top: 25px;
+    padding: 18px 22px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background: rgba(255,255,255,0.75);
+    backdrop-filter: blur(18px);
+
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(255,255,255,0.4);
+}
+
+.cart-summary-box h2 {
+    font-size: 1.6rem;
+    color: var(--navy);
+}
+
+/* Button consistency */
+.btn-primary {
+    padding: 12px 22px;
+    border-radius: 999px;
+
+    background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+    color: white;
+
+    font-weight: 600;
+    transition: 0.25s ease;
+    display: inline-block;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(184,150,78,0.3);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .cart-card {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        text-align: left;
+    }
+
+    .cart-summary-box {
+        flex-direction: column;
+        gap: 12px;
+    }
+}
+/* FIX COLUMN WIDTH BALANCE */
+.cart-info {
+    flex: 3;
+}
+
+.cart-price,
+.cart-qty,
+.cart-subtotal,
+.cart-remove {
+    flex: 1;
+    text-align: center;
+}
+.cart-qty {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+/* =========================================================
+   SCENTIA — PREMIUM ZARA STYLE CART
+========================================================= */
+
+.cart-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+/* CARD */
+.cart-card {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 22px 24px;
+
+    background: rgba(255,255,255,0.78);
+    backdrop-filter: blur(18px);
+
+    border-radius: 18px;
+
+    border: 1px solid rgba(255,255,255,0.4);
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,0.06);
+
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease,
+        opacity 0.35s ease;
+        
+    animation: cartFade 0.5s ease;
+}
+
+/* HOVER */
+.cart-card:hover {
+    transform: translateY(-4px);
+    box-shadow:
+        0 20px 40px rgba(0,0,0,0.12);
+}
+
+/* PRODUCT INFO */
+.cart-info {
+    flex: 3;
+}
+
+.item-name {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 4px;
+}
+
+.item-note {
+    font-size: 0.85rem;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+}
+
+/* PRICE */
+.cart-price {
+    flex: 1;
+    text-align: center;
+
+    font-weight: 600;
+    color: var(--text);
+
+    font-size: 0.95rem;
+}
+
+/* QUANTITY */
+.cart-qty {
+    flex: 1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 12px;
+}
+
+.cart-qty a {
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: rgba(0,0,0,0.05);
+
+    font-size: 1rem;
+    font-weight: 600;
+
+    transition: all 0.25s ease;
+}
+
+/* ZARA STYLE BUTTON EFFECT */
+.cart-qty a:hover {
+    background: var(--navy);
+    color: white;
+
+    transform: scale(1.08);
+}
+
+/* QUANTITY NUMBER */
+.cart-qty span {
+    min-width: 20px;
+    text-align: center;
+    font-weight: 600;
+}
+
+/* SUBTOTAL */
+.cart-subtotal {
+    flex: 1;
+    text-align: center;
+
+    font-weight: 700;
+    color: var(--navy);
+
+    font-size: 1rem;
+}
+
+/* REMOVE */
+.cart-remove {
+    flex: 1;
+    text-align: center;
+}
+
+.cart-remove a {
+    position: relative;
+
+    color: #d64545;
+    font-size: 0.88rem;
+    font-weight: 500;
+
+    transition: all 0.25s ease;
+}
+
+/* UNDERLINE SLIDE */
+.cart-remove a::after {
+    content: "";
+
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+
+    width: 0%;
+    height: 1px;
+
+    background: #d64545;
+
+    transition: width 0.3s ease;
+}
+
+.cart-remove a:hover::after {
+    width: 100%;
+}
+
+/* SUMMARY */
+.cart-summary-box {
+    margin-top: 28px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 24px;
+
+    background: rgba(255,255,255,0.82);
+    backdrop-filter: blur(18px);
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 12px 35px rgba(0,0,0,0.08);
+}
+
+.cart-summary-box p {
+    color: var(--muted);
+    margin-bottom: 4px;
+}
+
+.cart-summary-box h2 {
+    font-size: 2rem;
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--navy);
+}
+
+/* EMPTY STATE */
+.empty-state {
+    padding: 70px 30px;
+    text-align: center;
+
+    background: rgba(255,255,255,0.6);
+    border-radius: 20px;
+
+    animation: fadeIn 0.4s ease;
+}
+
+.empty-state h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    margin-bottom: 8px;
+}
+
+/* BUTTON */
+.btn-primary {
+    padding: 13px 24px;
+
+    border-radius: 999px;
+
+    background: linear-gradient(
+        135deg,
+        var(--gold),
+        var(--gold-dark)
+    );
+
+    color: white;
+    font-weight: 600;
+
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 14px 28px rgba(184,150,78,0.28);
+}
+
+/* =========================================
+   ZARA-LIKE ADD / REMOVE ANIMATIONS
+========================================= */
+
+/* CARD ENTER */
+@keyframes cartFade {
+    from {
+        opacity: 0;
+        transform: translateY(14px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* REMOVE ANIMATION */
+.cart-card.removing {
+    opacity: 0;
+    transform:
+        translateX(40px)
+        scale(0.96);
+
+    transition: all 0.35s ease;
+}
+
+/* QUANTITY BUMP */
+.cart-qty span.bump {
+    animation: qtyPulse 0.25s ease;
+}
+
+@keyframes qtyPulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.28);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+
+    .cart-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+
+    .cart-price,
+    .cart-qty,
+    .cart-subtotal,
+    .cart-remove {
+        width: 100%;
+        text-align: left;
+    }
+
+    .cart-summary-box {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 18px;
+    }
+
+    .btn-primary {
+        width: 100%;
+        text-align: center;
+    }
+}
+

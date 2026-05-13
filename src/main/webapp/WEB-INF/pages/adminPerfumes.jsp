@@ -31,8 +31,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Manage Perfumes | Scentia Admin</title>
   <link rel="stylesheet" href="<%= contextPath %>/css/style.css">
-  <style>
-    .admin-shell {
+  <!-- adminPerfumes.jsp e -->
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap');
+:root {
+  --bg:#f7f4ef; --card:rgba(255,255,255,0.7); --text:#1b1815;
+  --muted:#8c857d; --gold:#b8964e; --gold-dark:#8d6b35;
+  --navy:#1a1a2e; --border:rgba(0,0,0,0.08); --shadow:0 10px 30px rgba(0,0,0,0.08); --radius:16px;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+a { text-decoration:none; color:inherit; }
+body {
+  font-family:'DM Sans',sans-serif;
+  background:radial-gradient(circle at top,#f7f4ef,#ede3d6);
+  color:var(--text); line-height:1.6; animation:fadeIn 0.5s ease;
+}
+.navbar {
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  backdrop-filter:blur(18px); background:rgba(255,255,255,0.7);
+  box-shadow:0 4px 20px rgba(0,0,0,0.08);
+  padding:16px 5%; display:flex; justify-content:space-between; align-items:center;
+}
+.logo { font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:700; color:var(--navy); }
+.logo span { color:var(--gold); }
+.nav-links { display:flex; gap:22px; align-items:center; }
+.nav-link { font-size:0.86rem; font-weight:500; color:var(--text); transition:color 0.2s; }
+.nav-link:hover { color:var(--gold); }
+@keyframes fadeIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+ .admin-shell {
       width: min(1100px, 94%);
       margin: 0 auto;
       padding-top: 110px;
@@ -145,7 +171,7 @@
     }
     @keyframes slideIn { from{opacity:0;transform:translateX(30px)} to{opacity:1;transform:translateX(0)} }
     @keyframes fadeOut { to{opacity:0;pointer-events:none} }
-  </style>
+</style>
 </head>
 <body>
 

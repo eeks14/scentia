@@ -22,8 +22,7 @@ public class CheckoutServlet extends HttpServlet {
             return;
         }
 
-        req.getRequestDispatcher("WEB-INF/pages/Checkout.jsp")
-           .forward(req, res);
+        req.getRequestDispatcher("WEB-INF/pages/Checkout.jsp").forward(req, res);
     }
 
     // Handle form submit

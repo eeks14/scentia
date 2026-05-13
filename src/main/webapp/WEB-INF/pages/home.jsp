@@ -22,7 +22,126 @@ String role      = user.getRole();
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Home | Scentia</title>
-  <link rel="stylesheet" href="<%= contextPath %>/css/style.css">
+  <!-- home.jsp -->
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap');
+:root {
+  --bg:#f7f4ef; --card:rgba(255,255,255,0.7); --text:#1b1815;
+  --muted:#8c857d; --gold:#b8964e; --gold-dark:#8d6b35;
+  --navy:#1a1a2e; --border:rgba(0,0,0,0.08); --shadow:0 10px 30px rgba(0,0,0,0.08); --radius:16px;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+a { text-decoration:none; color:inherit; }
+body {
+  font-family:'DM Sans',sans-serif;
+  background:radial-gradient(circle at top,#f7f4ef,#ede3d6);
+  color:var(--text); line-height:1.6; animation:fadeIn 0.5s ease;
+}
+/* NAVBAR */
+.navbar {
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  backdrop-filter:blur(18px); background:rgba(255,255,255,0.7);
+  box-shadow:0 4px 20px rgba(0,0,0,0.08);
+  padding:16px 5%; display:flex; justify-content:space-between; align-items:center;
+}
+.logo { font-family:'Cormorant Garamond',serif; font-size:1.7rem; font-weight:700; color:var(--navy); }
+.logo span { color:var(--gold); }
+.nav-links { display:flex; gap:22px; align-items:center; list-style:none; }
+.nav-link { font-size:0.88rem; font-weight:500; color:var(--text); transition:color 0.2s; }
+.nav-link:hover { color:var(--gold); }
+.btn-logout {
+  padding:8px 18px; border-radius:999px;
+  background:linear-gradient(135deg,var(--gold),var(--gold-dark));
+  color:white !important; font-weight:600; font-size:0.82rem; transition:0.25s;
+}
+.btn-logout:hover { transform:translateY(-2px); box-shadow:0 8px 18px rgba(184,150,78,0.3); }
+/* LAYOUT */
+.main-container { padding-top:80px; }
+.dashboard-container { width:min(1200px,92%); margin:0 auto; padding:40px 0 60px; }
+/* WELCOME */
+.welcome-section {
+  text-align:center; padding:60px 20px 50px; animation:fadeUp 0.7s ease;
+}
+.welcome-eyebrow {
+  font-size:0.78rem; color:var(--muted); letter-spacing:0.14em;
+  text-transform:uppercase; margin-bottom:10px;
+}
+.welcome-title {
+  font-family:'Cormorant Garamond',serif;
+  font-size:3rem; color:var(--navy); font-weight:700; margin-bottom:10px;
+}
+.welcome-subtitle { color:var(--muted); font-size:1rem; margin-bottom:26px; }
+/* DASHBOARD LAYOUT */
+.dashboard-layout {
+  display:grid; grid-template-columns:1fr 320px; gap:28px; align-items:start;
+}
+/* SECTION LABEL */
+.section-label {
+  font-size:0.75rem; font-weight:600; color:var(--muted);
+  letter-spacing:0.12em; text-transform:uppercase; margin-bottom:14px;
+}
+/* VIBE GRID */
+.vibe-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+.vibe-card {
+  position:relative; height:200px; border-radius:18px;
+  background-size:cover; background-position:center;
+  cursor:pointer; overflow:hidden;
+  box-shadow:0 8px 24px rgba(0,0,0,0.14);
+  transition:transform 0.35s ease, box-shadow 0.35s ease;
+}
+.vibe-card:hover { transform:translateY(-5px); box-shadow:0 18px 36px rgba(0,0,0,0.2); }
+.vibe-card .overlay {
+  position:absolute; inset:0;
+  background:linear-gradient(to top,rgba(0,0,0,0.65),transparent);
+  display:flex; flex-direction:column; justify-content:flex-end;
+  padding:18px; color:white; opacity:0; transition:opacity 0.3s;
+}
+.vibe-card:hover .overlay { opacity:1; }
+.vibe-card .overlay h3 { font-family:'Cormorant Garamond',serif; font-size:1.3rem; }
+.vibe-card .overlay p { font-size:0.8rem; opacity:0.85; }
+.vibe-badge {
+  position:absolute; top:12px; left:12px;
+  background:rgba(255,255,255,0.88); color:var(--navy);
+  padding:4px 12px; border-radius:999px; font-size:0.75rem; font-weight:600;
+}
+/* SIDEBAR */
+.glass-card {
+  background:rgba(255,255,255,0.72); backdrop-filter:blur(18px);
+  border-radius:var(--radius); border:1px solid rgba(255,255,255,0.45);
+  box-shadow:var(--shadow);
+}
+.sidebar-card { padding:22px; }
+.recommendation-item { display:flex; gap:14px; align-items:center; padding:12px 0; }
+.perfume-img { width:56px; height:56px; border-radius:12px; object-fit:cover; }
+.rec-info h4 { font-size:0.95rem; font-weight:600; color:var(--navy); margin-bottom:2px; }
+.rec-info p { font-size:0.78rem; color:var(--muted); }
+.match-pill {
+  display:inline-block; margin-top:4px;
+  font-size:0.72rem; font-weight:600;
+  background:rgba(184,150,78,0.12); color:var(--gold-dark);
+  padding:3px 10px; border-radius:999px;
+}
+.rec-divider { height:1px; background:rgba(0,0,0,0.06); margin:0; }
+/* BUTTONS */
+.btn-primary {
+  display:inline-block; padding:12px 24px; border-radius:999px; border:none;
+  background:linear-gradient(135deg,var(--gold),var(--gold-dark));
+  color:white; font-family:'DM Sans',sans-serif; font-weight:600;
+  font-size:0.9rem; cursor:pointer; transition:0.3s ease; text-align:center;
+}
+.btn-primary:hover { transform:translateY(-3px); box-shadow:0 12px 25px rgba(184,150,78,0.3); }
+@keyframes fadeIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+@keyframes fadeUp { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)} }
+@media(max-width:900px){
+  .dashboard-layout{ grid-template-columns:1fr; }
+  .vibe-grid{ grid-template-columns:1fr 1fr; }
+  .welcome-title{ font-size:2.2rem; }
+}
+@media(max-width:540px){
+  .vibe-grid{ grid-template-columns:1fr; }
+  .navbar{ padding:14px 4%; }
+}
+</style>
 </head>
 <body>
 
